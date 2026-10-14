@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanthimaporn Kulrach - Academic Portfolio | สาธารณสุขชุมชน</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Kanit', 'Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Plus Jakarta Sans', 'monospace']
+                    },
+                    colors: {
+                        emerald: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        slate: {
+                            850: '#152033',
+                            900: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Kanit', 'Plus Jakarta Sans', sans-serif;
+            background-color: #fafafa;
+            color: #1e293b;
+        }
+        .minimal-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .minimal-card:hover {
+            border-color: #10b981;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .accent-gradient-text {
+            background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @media print {
+            nav, #github-deploy, .no-print { display: none !important; }
+            body { background: white; color: black; }
+            .minimal-card { border: 1px solid #ccc !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-emerald-500 selection:text-white">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 w-full glass-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand Badge -->
+                <a href="#about" class="flex items-center space-x-3 group">
+                    <div class="w-9 h-9 rounded-xl bg-slate-900 text-white font-bold text-xs flex items-center justify-center group-hover:bg-emerald-600 transition">
+                        KK
+                    </div>
+                    <div>
+                        <span class="font-bold text-slate-900 text-sm sm:text-base block leading-tight">กัณฑิมาพร กุลราช</span>
+                        <span class="text-[11px] text-emerald-600 font-medium block">สาธารณสุขชุมชน | GPAX 3.91</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs font-medium text-slate-600">
+                    <a href="#about" class="px-3 py-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition">เกี่ยวกับ</a>
+                    <a href="#sop" class="px-3 py-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition">แรงบันดาลใจ</a>
+                    <a href="#academics" class="px-3 py-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition">ผลการเรียน</a>
+                    <a href="#hospital" class="px-3 py-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition">จิตอาสา รพ.</a>
+                    <a href="#activities" class="px-3 py-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition">ผลงานกิจกรรม</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-1.5 text-sm">
+            <a href="#about" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100">ประวัติส่วนตัว</a>
+            <a href="#sop" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100">แรงบันดาลใจ (SOP)</a>
+            <a href="#academics" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100">ผลการเรียน (ปพ.1)</a>
+            <a href="#hospital" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100">ฝึกประสบการณ์ รพ.บ้านผือ</a>
+            <a href="#activities" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-100">ผลงานและกิจกรรม</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="about" class="py-12 sm:py-16 bg-white border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Profile Avatar Card -->
+                <div class="lg:col-span-4 flex flex-col items-center">
+                    <div class="relative w-full max-w-[280px] aspect-[3/4] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-sm flex flex-col items-center justify-between p-6 text-center">
+                        <div class="absolute top-3 right-3 px-2.5 py-1 bg-emerald-600 text-white text-[11px] font-bold rounded-full shadow-sm z-10">
+                            GPAX 3.91
+                        </div>
+                        
+                        <div class="my-auto flex flex-col items-center">
+                            <img src="https://raw.githubusercontent.com/kanthimaporn/kk.port/main/IMG_5345.jpeg" 
+                                 alt="กัณฑิมาพร กุลราช" 
+                                 class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mb-4"
+                                 onerror="this.onerror=null; this.src='https://github.com/kanthimaporn/kk.port/raw/main/IMG_5345.jpeg';">
+                            <h2 class="text-xl font-bold text-slate-900">กัณฑิมาพร กุลราช</h2>
+                            <p class="text-xs text-slate-500 font-medium mt-1">(น้ำผึ้ง) • Numpheung</p>
+                            <p class="text-xs text-emerald-700 font-semibold bg-emerald-50 px-3 py-1 rounded-md mt-2 border border-emerald-200/60">
+                                โรงเรียนเตรียมอุดมศึกษาพัฒนาการ อุดรธานี
+                            </p>
+                        </div>
+
+                        <div class="w-full pt-3 border-t border-slate-200 text-left space-y-1">
+                            <div class="flex justify-between text-[11px] text-slate-500">
+                                <span>แผนการเรียน:</span>
+                                <span class="font-semibold text-slate-800">วิทย์ - คณิต</span>
+                            </div>
+                            <div class="flex justify-between text-[11px] text-slate-500">
+                                <span>เป้าหมายการศึกษา:</span>
+                                <span class="font-semibold text-emerald-700">สบช. วสส.ขอนแก่น</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio & Core Information -->
+                <div class="lg:col-span-8 space-y-6">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-semibold mb-3">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span>Academic Portfolio 2026</span>
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+                            นางสาวกัณฑิมาพร กุลราช
+                        </h1>
+                        <p class="text-base text-emerald-700 font-medium mt-1">
+                            ผู้สมัครเข้าศึกษา คณะสาธารณสุขศาสตร์และสหเวชศาสตร์ สาขาวิชาสาธารณสุขชุมชน
+                        </p>
+                        <p class="text-xs text-slate-500 font-medium">
+                            วิทยาลัยการสาธารณสุขสิรินธร จังหวัดขอนแก่น (สถาบันพระบรมราชชนก)
+                        </p>
+                    </div>
+
+                    <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                        มีความสนใจและมุ่งมั่นในด้านวิทยาศาสตร์สุขภาพและงานจิตอาสา เพื่อก้าวสู่การเป็นนักวิชาการสาธารณสุขที่มีคุณภาพ ทำหน้าที่วางแผน ป้องกันโรค และเข้าถึงประชาชนในชุมชน เพื่อให้ผู้คนมีคุณภาพชีวิตที่ดีและปลอดภัยตั้งแต่ต้นเหตุ
+                    </p>
+
+                    <!-- Key Stats Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+                            <span class="text-[11px] text-slate-400 block font-medium">เกรดเฉลี่ยสะสม</span>
+                            <span class="text-lg font-bold text-slate-900">3.91 <span class="text-xs font-normal text-slate-500">(5 เทอม)</span></span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+                            <span class="text-[11px] text-slate-400 block font-medium">ฝึกปฏิบัติงาน รพ.</span>
+                            <span class="text-lg font-bold text-emerald-700">40 ชั่วโมงเต็ม</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+                            <span class="text-[11px] text-slate-400 block font-medium">วันเกิด / กรุ๊ปเลือด</span>
+                            <span class="text-sm font-semibold text-slate-800">10 เม.ย. 50 | B</span>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200/80">
+                            <span class="text-[11px] text-slate-400 block font-medium">ส่วนสูง / น้ำหนัก</span>
+                            <span class="text-sm font-semibold text-slate-800">165 ซม. / 45 กก.</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons & Contact Badges -->
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <a href="#sop" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-xs sm:text-sm font-semibold hover:bg-emerald-700 transition shadow-sm flex items-center space-x-2">
+                            <i class="fa-solid fa-feather-pointed text-xs"></i>
+                            <span>อ่านแรงบันดาลใจ (SOP)</span>
+                        </a>
+                        <button onclick="window.print()" class="px-4 py-2.5 bg-white text-slate-700 border border-slate-300 rounded-xl text-xs sm:text-sm font-medium hover:bg-slate-50 transition flex items-center space-x-2">
+                            <i class="fa-solid fa-print text-xs"></i>
+                            <span>พิมพ์ / บันทึก PDF</span>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement of Purpose (SOP) Section -->
+    <section id="sop" class="py-12 bg-slate-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="text-emerald-700 text-xs font-bold uppercase tracking-widest block mb-1">Statement of Purpose</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">เหตุผลที่ต้องการเข้าศึกษา</h2>
+                <p class="text-slate-500 text-xs sm:text-sm mt-1">สาขาวิชาสาธารณสุขชุมชน วิทยาลัยการสาธารณสุขสิรินธร จังหวัดขอนแก่น</p>
+            </div>
+
+            <div class="minimal-card rounded-2xl p-6 sm:p-8 space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed relative">
+                <div class="flex items-center space-x-3 pb-4 border-b border-slate-100">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-sm sm:text-base">"ป้องกันโรคตั้งแต่ต้นเหตุ ดีกว่าการตามรักษา"</h3>
+                        <p class="text-xs text-slate-500">ปณิธานความมุ่งมั่นสู่วิชาชีพนักวิชาการสาธารณสุข</p>
+                    </div>
+                </div>
+
+                <p>
+                    ดิฉันนางสาวกัณฑิมาพร กุลราช นักเรียนชั้นมัธยมศึกษาปีที่ 6 โรงเรียนเตรียมอุดมศึกษาพัฒนาการ อุดรธานี แผนการเรียนวิทยาศาสตร์-คณิตศาสตร์ ดิฉันเลือกเรียนในแผนการเรียนนี้เพราะมีความสนใจ เพื่อใช้เป็นพื้นฐานต่อยอดการเข้าศึกษาต่อในคณะสาธารณสุขศาสตร์และสหเวชศาสตร์ สาขาวิชาสาธารณสุขชุมชน
+                </p>
+
+                <div class="p-4 bg-emerald-50/60 border-l-4 border-emerald-600 rounded-r-xl text-slate-800 font-medium text-xs sm:text-sm space-y-1">
+                    <p class="italic">
+                        "จากการเข้าร่วมจิตอาสาฝึกประสบการณ์วิชาชีพในโรงพยาบาลบ้านผือ ทำให้ดิฉันได้ปฏิบัติงานในแผนกต่างๆ ได้ใกล้ชิดกับพี่ๆ พยาบาล บุคลากรทางการแพทย์ และผู้ป่วย ทำให้พบว่าปัจจุบันสังคมมีผู้ป่วยเป็นจำนวนมาก ในมุมมองของดิฉันจึงนึกได้ว่า <span class="text-emerald-800 font-bold not-italic">หากเราสามารถป้องกันไม่ให้ผู้คนป่วยเป็นโรคภัยไข้เจ็บตั้งแต่ต้นเหตุ จะดีกว่าการตามรักษาเสมอ</span>"
+                    </p>
+                </div>
+
+                <p>
+                    นักวิชาการสาธารณสุขเป็นสายงานที่มีความสำคัญมากในระบบสาธารณสุข คือ เป็นผู้วางแผน ป้องกันโรค ให้คนไม่ป่วย และเข้าถึงประชาชนในชุมชน ดิฉันมองว่าเป็นอาชีพที่ยังมีความต้องการเป็นอย่างมากเนื่องจากในบางชุมชนยังขาดแคลน ทำให้ผู้ป่วยเข้าถึงบริการได้ยาก เราจึงต้องเป็นฝ่ายเข้าถึงผู้ป่วยเอง
+                </p>
+
+                <p>
+                    ดิฉันเชื่อมั่นเป็นอย่างยิ่งว่าจะตั้งใจศึกษาเล่าเรียนอย่างเต็มความสามารถ เพื่อนำความรู้และประสบการณ์ไปต่อยอดในการประกอบอาชีพ นำกลับมาส่งเสริมสุขภาพผู้คนในชุมชน ป้องกันโรค และฟื้นฟูผู้ป่วยให้มีคุณภาพชีวิตที่ดีและปลอดภัยอย่างสูงสุด
+                </p>
+
+                <div class="pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-500">
+                    <span>ผู้เขียน: นางสาวกัณฑิมาพร กุลราช</span>
+                    <span class="font-semibold text-slate-700">โรงเรียนเตรียมอุดมศึกษาพัฒนาการ อุดรธานี</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Details, Family & Skills Grid -->
+    <section class="py-12 bg-white border-y border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Personal & Contact Info -->
+                <div class="minimal-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-2 border-b border-slate-100 pb-3">
+                        <i class="fa-solid fa-address-card text-emerald-600"></i>
+                        <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">ข้อมูลส่วนตัว & ช่องทางติดต่อ</h3>
+                    </div>
+
+                    <div class="text-xs space-y-2.5 text-slate-600">
+                        <div class="flex justify-between border-b border-slate-50 pb-1.5">
+                            <span class="text-slate-400">วัน/เดือน/ปีเกิด:</span>
+                            <span class="font-medium text-slate-800">10 เมษายน 2550 (อายุ 18 ปี)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-50 pb-1.5">
+                            <span class="text-slate-400">สัญชาติ / ศาสนา:</span>
+                            <span class="font-medium text-slate-800">ไทย / พุทธ</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-50 pb-1.5">
+                            <span class="text-slate-400">เบอร์โทรศัพท์:</span>
+                            <a href="tel:0878526179" class="font-semibold text-emerald-700 hover:underline">087-852-6179</a>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-50 pb-1.5">
+                            <span class="text-slate-400">อีเมล:</span>
+                            <a href="mailto:Kanthimapornkk9@gmail.com" class="font-medium text-slate-800 hover:underline">Kanthimapornkk9@gmail.com</a>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-50 pb-1.5">
+                            <span class="text-slate-400">Line ID:</span>
+                            <span class="font-medium text-slate-800">apr1007</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Instagram:</span>
+                            <span class="font-medium text-slate-800">cigaretf</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <span class="text-[11px] text-slate-400 block mb-1">งานอดิเรก:</span>
+                        <div class="flex flex-wrap gap-1.5 text-[11px]">
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md">แบดมินตัน</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md">ต่อเลโก้</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md">ฟังเพลง</span>
+                            <span class="px-2 py-0.5 bg-slate-100 text-slate-700 rounded-md">พอดแคสต์</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Background -->
+                <div class="minimal-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-2 border-b border-slate-100 pb-3">
+                        <i class="fa-solid fa-house-user text-emerald-600"></i>
+                        <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">ข้อมูลครอบครัว (Family)</h3>
+                    </div>
+
+                    <div class="text-xs space-y-3 text-slate-600">
+                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                            <span class="text-[11px] font-bold text-slate-400 block uppercase">ข้อมูลบิดา</span>
+                            <p class="font-bold text-slate-800">นายกฤษณะ กุลราช</p>
+                            <p class="text-slate-500">อาชีพ: เกษตรกร | Tel: 095-664-0769</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl space-y-1">
+                            <span class="text-[11px] font-bold text-slate-400 block uppercase">ข้อมูลมารดา</span>
+                            <p class="font-bold text-slate-800">นางสาวกนิษฐา กุลราช</p>
+                            <p class="text-slate-500">อาชีพ: เกษตรกร | Tel: 098-676-3125</p>
+                        </div>
+
+                        <div class="flex justify-between items-center px-1 text-slate-600">
+                            <span>สถานะในครอบครัว:</span>
+                            <span class="font-semibold text-slate-800">บุตรคนโต (พี่น้อง 2 คน)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skills & Software Competencies -->
+                <div class="minimal-card p-6 rounded-2xl space-y-4">
+                    <div class="flex items-center space-x-2 border-b border-slate-100 pb-3">
+                        <i class="fa-solid fa-sliders text-emerald-600"></i>
+                        <h3 class="font-bold text-slate-900 text-sm uppercase tracking-wider">ทักษะ & ความสามารถ</h3>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div>
+                            <span class="text-[11px] font-bold text-slate-400 uppercase block mb-1.5">ทักษะด้านการทำงาน</span>
+                            <ul class="text-xs space-y-1.5 text-slate-700">
+                                <li class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-600 text-[10px]"></i>
+                                    <span>การทำงานร่วมกับผู้อื่น (Teamwork)</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-600 text-[10px]"></i>
+                                    <span>มีความคิดสร้างสรรค์ (Creativity)</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-600 text-[10px]"></i>
+                                    <span>ความอดทนสูง & จิตสาธารณะ</span>
+                                </li>
+                                <li class="flex items-center space-x-2">
+                                    <i class="fa-solid fa-circle-check text-emerald-600 text-[10px]"></i>
+                                    <span>มีความละเอียดรอบคอบใส่ใจงาน</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-100">
+                            <span class="text-[11px] font-bold text-slate-400 uppercase block mb-2">โปรแกรมที่เชี่ยวชาญ</span>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div class="p-2 bg-slate-100 rounded-lg flex items-center space-x-2">
+                                    <i class="fa-solid fa-photo-film text-purple-600"></i>
+                                    <span class="font-semibold text-slate-800">Canva</span>
+                                </div>
+                                <div class="p-2 bg-slate-100 rounded-lg flex items-center space-x-2">
+                                    <i class="fa-solid fa-video text-slate-900"></i>
+                                    <span class="font-semibold text-slate-800">CapCut</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Transcript Section (ปพ.1) -->
+    <section id="academics" class="py-12 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                <div>
+                    <span class="text-emerald-700 text-xs font-bold uppercase tracking-widest block mb-1">Academic Records</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">ระเบียนผลการเรียน (ปพ.1)</h2>
+                    <p class="text-slate-500 text-xs sm:text-sm mt-1">โรงเรียนเตรียมอุดมศึกษาพัฒนาการ อุดรธานี (5 ภาคเรียน รวม 79.0 หน่วยกิต)</p>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center space-x-3 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm">
+                    <span class="text-xs text-slate-500 font-medium">เกรดเฉลี่ยสะสมตลอดหลักสูตร:</span>
+                    <span class="text-2xl font-bold text-emerald-700">3.91</span>
+                </div>
+            </div>
+
+            <!-- Learning Area Grade Cards Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                <!-- Thai -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">กลุ่มสาระการเรียนรู้ภาษาไทย</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 5.0</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">4.00</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีเยี่ยม</span>
+                    </div>
+                </div>
+
+                <!-- Math -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">กลุ่มสาระการเรียนรู้คณิตศาสตร์</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 12.5</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">3.78</span>
+                        <span class="text-[10px] bg-sky-100 text-sky-800 px-1.5 py-0.5 rounded font-bold block">ดีมาก</span>
+                    </div>
+                </div>
+
+                <!-- Science & Tech -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">วิทยาศาสตร์และเทคโนโลยี</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 30.0</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-emerald-700">3.87</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีมาก</span>
+                    </div>
+                </div>
+
+                <!-- Foreign Languages -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">ภาษาต่างประเทศ</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 14.5</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">4.00</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีเยี่ยม</span>
+                    </div>
+                </div>
+
+                <!-- Social Studies -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">สังคมศึกษา ศาสนา และวัฒนธรรม</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 8.5</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">4.00</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีเยี่ยม</span>
+                    </div>
+                </div>
+
+                <!-- Health & PE -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">สุขศึกษาและพลศึกษา</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 2.5</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">4.00</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีเยี่ยม</span>
+                    </div>
+                </div>
+
+                <!-- Arts -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">ศิลปะ</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 2.5</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">4.00</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีเยี่ยม</span>
+                    </div>
+                </div>
+
+                <!-- Occupations -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">การงานอาชีพ</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 2.5</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">4.00</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีเยี่ยม</span>
+                    </div>
+                </div>
+
+                <!-- IS Independent Study -->
+                <div class="minimal-card p-4 rounded-xl flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-semibold text-slate-500 block">การศึกษาค้นคว้าด้วยตนเอง (IS)</span>
+                        <span class="text-xs text-slate-400">หน่วยกิตรวม 1.0</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-lg font-bold text-slate-900">4.00</span>
+                        <span class="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-bold block">ดีเยี่ยม</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinical & Hospital Volunteer Training Spotlight -->
+    <section id="hospital" class="py-12 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-6 mb-8">
+                <div>
+                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest block mb-1">Practical Experience</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold">จิตอาสาฝึกประสบการณ์ โรงพยาบาลบ้านผือ</h2>
+                    <p class="text-slate-400 text-xs sm:text-sm mt-1">อ.บ้านผือ จ.อุดรธานี (18 - 24 มีนาคม 2568 | รวมระยะเวลา 40 ชั่วโมงเต็ม)</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <span class="px-3 py-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs rounded-lg font-semibold inline-flex items-center space-x-2">
+                        <i class="fa-solid fa-hospital-user"></i>
+                        <span>ผ่านการรับรองจากกลุ่มการพยาบาล</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Rotation Modules Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Rotation 1 -->
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700/80 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-100">แผนก OPD ทั่วไป & หัตถการ</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        ปฏิบัติหน้าที่ซักประวัติผู้ป่วยเบื้องต้น วัดความดันโลหิต ช่วยจัดเตรียมอุปกรณ์สำหรับเจาะเลือด สังเกตการณ์การใช้เครื่องวัดคลื่นหัวใจ และช่วยเหลือการล้างแผล
+                    </p>
+                </div>
+
+                <!-- Rotation 2 -->
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700/80 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-apple-whole"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-100">กุมารเวช & โภชนาการผู้ป่วย</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        ให้ความรู้ด้านโภชนาการแก่ผู้ป่วย สอนการนับคาร์โบไฮเดรต (Carb counting) ช่วยจัดเตรียมเอกสาร แจกยาแก่ผู้ป่วยโรคเบาหวาน และสร้างกำลังใจแก่ผู้ป่วย
+                    </p>
+                </div>
+
+                <!-- Rotation 3 -->
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700/80 space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center font-bold text-lg">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-slate-100">อนามัยชุมชน & "ญาติจำเป็น"</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        ร่วมประชาสัมพันธ์รณรงค์วันวัณโรคโลก ปฏิบัติหน้าที่เป็น "ญาติจำเป็น" คอยอำนวยความสะดวก นำพาส่งรับยาแก่ผู้ป่วยไร้ญาติและผู้ที่ไม่สามารถช่วยเหลือตนเองได้
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Reflection Box -->
+            <div class="mt-8 bg-slate-850 p-6 rounded-2xl border border-slate-700/80 text-xs sm:text-sm text-slate-300 space-y-2">
+                <span class="text-emerald-400 font-bold block flex items-center space-x-2">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>สิ่งที่ได้รับจากการปฏิบัติงานจริง:</span>
+                </span>
+                <p class="leading-relaxed">
+                    การได้เห็นการทำงานจริงของบุคลากรทางการแพทย์ ทำให้ตระหนักว่างานสาธารณสุขและการส่งเสริมสุขภาพเชิงป้องกันในชุมชนมีความสำคัญมากเพียงใด หากเราป้องกันไม่ให้ประชาชนเจ็บป่วย จะช่วยลดภาระงานในโรงพยาบาลและยกระดับคุณภาพชีวิตของคนในสังคมได้อย่างยั่งยืน
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities & Certificates Gallery -->
+    <section id="activities" class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <span class="text-emerald-700 text-xs font-bold uppercase tracking-widest block mb-1">Portfolio Highlights</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900">ผลงานและกิจกรรมที่โดดเด่น</h2>
+                <p class="text-slate-500 text-xs sm:text-sm mt-1">วิชาการ, นวัตกรรมสุขภาพ, จิตอาสา และภาวะผู้นำ</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8 text-xs font-medium">
+                <button onclick="filterItems('all')" class="activity-tab active px-4 py-2 rounded-full bg-slate-900 text-white shadow-sm transition">
+                    ทั้งหมด
+                </button>
+                <button onclick="filterItems('academic')" class="activity-tab px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                    วิชาการ & การแข่งขัน
+                </button>
+                <button onclick="filterItems('health')" class="activity-tab px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                    สาธารณสุข & โครงงาน
+                </button>
+                <button onclick="filterItems('volunteer')" class="activity-tab px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition">
+                    จิตอาสา & ผู้นำ
+                </button>
+            </div>
+
+            <!-- Gallery Cards Grid -->
+            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Activity 1 -->
+                <div class="activity-item minimal-card rounded-2xl p-5 space-y-3" data-cat="academic">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 bg-amber-100 text-amber-800 text-[11px] font-bold rounded-md">
+                            รางวัลชนะเลิศ
+                        </span>
+                        <span class="text-[11px] text-slate-400">30 ส.ค. 2566</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">การแข่งขันตอบปัญหาวันวิทยาศาสตร์</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                        การแข่งขันตอบปัญหาทางวิทยาศาสตร์-คณิตศาสตร์ และเทคโนโลยีระดับโรงเรียน พัฒนาการทำงานเป็นทีม การแบ่งเนื้อหา ฟิสิกส์ เคมี ชีววิทยา และวิเคราะห์แก้ไขปัญหาภายใต้เวลาจำกัด
+                    </p>
+                    <button onclick="openModal('m-1')" class="text-xs font-semibold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                        <span>อ่านรายละเอียด</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Activity 2 -->
+                <div class="activity-item minimal-card rounded-2xl p-5 space-y-3" data-cat="academic health">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 bg-sky-100 text-sky-800 text-[11px] font-bold rounded-md">
+                            รองชนะเลิศอันดับ 1
+                        </span>
+                        <span class="text-[11px] text-slate-400">21 ม.ค. 2568</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">โครงงานเศรษฐศาสตร์ "ซูชิโรลธัญพืช"</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                        แข่งขัน Young Start-up นำ "ข้าวกล้อง" วัตถุดิบชุมชนมาแปรรูปเป็นอาหารเพื่อสุขภาพ ตอบโจทย์ผู้บริโภคช่วงเทศกาลกินเจ สนับสนุนเกษตรกรและป้องกันโรคตั้งแต่ต้นเหตุ
+                    </p>
+                    <button onclick="openModal('m-2')" class="text-xs font-semibold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                        <span>อ่านรายละเอียด</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Activity 3 -->
+                <div class="activity-item minimal-card rounded-2xl p-5 space-y-3" data-cat="health">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 text-[11px] font-bold rounded-md">
+                            โครงงาน IS สาธารณสุข
+                        </span>
+                        <span class="text-[11px] text-slate-400">ปีการศึกษา 2567</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">โครงงาน "ถุงหอมไล่ยุงสมุนไพร"</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                        ศึกษาแก้ปัญหายุงพาหะนำโรคไข้เลือดออกในชุมชน โดยประยุกต์ใช้ตะไคร้หอมและเปลือกมะนาว ลดการใช้สารเคมีที่เป็นอันตราย ตรงกับสายงานป้องกันโรคสาธารณสุข
+                    </p>
+                    <button onclick="openModal('m-3')" class="text-xs font-semibold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                        <span>อ่านรายละเอียด</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Activity 4 -->
+                <div class="activity-item minimal-card rounded-2xl p-5 space-y-3" data-cat="academic">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-[11px] font-bold rounded-md">
+                            เข้าร่วมโครงการ
+                        </span>
+                        <span class="text-[11px] text-slate-400">15-18 ก.พ. 2568</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">ค่ายบูรณาการวิทยาศาสตร์และเทคโนโลยี</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                        ปฏิบัติการทางวิทยาศาสตร์แบบเข้มข้น 2 วัน 1 คืน การไทเทรต สังเกตการณ์หมู่ดาว และระบบหุ่นยนต์ ฝึกระเบียบวินัยและการปรับตัวเข้ากับผู้อื่น
+                    </p>
+                    <button onclick="openModal('m-4')" class="text-xs font-semibold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                        <span>อ่านรายละเอียด</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Activity 5 -->
+                <div class="activity-item minimal-card rounded-2xl p-5 space-y-3" data-cat="volunteer academic">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 text-[11px] font-bold rounded-md">
+                            ภาวะผู้นำ & วิทยากร
+                        </span>
+                        <span class="text-[11px] text-slate-400">20 ส.ค. 2568</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">วิทยากรประจำซุ้มเคมี (อินดิเคเตอร์)</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                        รับผิดชอบดูแลซุ้มทดสอบกรด-เบสในงานวันวิทยาศาสตร์ ถ่ายทอดความรู้ทางเคมีให้แก่ผู้เข้าชม ฝึกทักษะการสื่อสารและการอธิบายเรื่องยากให้เข้าใจง่าย
+                    </p>
+                    <button onclick="openModal('m-5')" class="text-xs font-semibold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                        <span>อ่านรายละเอียด</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+                <!-- Activity 6 -->
+                <div class="activity-item minimal-card rounded-2xl p-5 space-y-3" data-cat="volunteer">
+                    <div class="flex justify-between items-start">
+                        <span class="px-2.5 py-1 bg-pink-100 text-pink-800 text-[11px] font-bold rounded-md">
+                            จิตอาสาสัญจร
+                        </span>
+                        <span class="text-[11px] text-slate-400">22 ก.พ. 2568</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-base">จิตอาสาพัฒนาโรงเรียนบ้านหนองเหล็ก</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                        ร่วมพัฒนาโรงเรียนในชุมชน ทาสีถนนสร้างสื่อการเรียนการสอนแบบ BBL เพื่อสร้างสภาพแวดล้อมการเรียนรู้ที่ดีแก่น้องๆ ในท้องถิ่น
+                    </p>
+                    <button onclick="openModal('m-6')" class="text-xs font-semibold text-emerald-700 hover:underline inline-flex items-center space-x-1">
+                        <span>อ่านรายละเอียด</span>
+                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-8 text-xs border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="text-slate-200 font-semibold">นางสาวกัณฑิมาพร กุลราช (น้ำผึ้ง)</p>
+                <p class="text-slate-500">สาขาวิชาสาธารณสุขชุมชน • วิทยาลัยการสาธารณสุขสิรินธร จังหวัดขอนแก่น</p>
+            </div>
+            <div class="text-right text-slate-500 text-[11px]">
+                <p>Academic Portfolio Website | Minimal Modern Style</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Detail Modals Container -->
+    <div id="modal-backdrop" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        
+        <div id="m-1" class="modal-box hidden bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <span class="px-2.5 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-md inline-block">รางวัลชนะเลิศ</span>
+            <h3 class="text-base font-bold text-slate-900">การแข่งขันตอบปัญหาวันวิทยาศาสตร์</h3>
+            <p class="text-xs text-slate-500">โรงเรียนเตรียมอุดมศึกษาพัฒนาการ อุดรธานี (30 ส.ค. 2566)</p>
+            <div class="text-xs text-slate-600 space-y-2 leading-relaxed border-t border-slate-100 pt-3">
+                <p><strong>รายละเอียด:</strong> การแข่งขันแบบทีมที่ต้องใช้ความรู้หลายแขนง ฟิสิกส์ เคมี ชีววิทยา คณิตศาสตร์ และเทคโนโลยี</p>
+                <p><strong>สิ่งที่ได้รับ:</strong> การบริหารเวลา ความตระหนักในการทำงานเป็นทีม การสื่อสารและรับฟังความคิดเห็นเพื่อวิเคราะห์ตัดสินใจช่วยกันภายใต้เวลาที่จำกัด</p>
+            </div>
+        </div>
+
+        <div id="m-2" class="modal-box hidden bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <span class="px-2.5 py-1 bg-sky-100 text-sky-800 text-xs font-bold rounded-md inline-block">รองชนะเลิศอันดับ 1</span>
+            <h3 class="text-base font-bold text-slate-900">โครงงานเศรษฐศาสตร์ Young Start-Up "ซูชิโรลธัญพืช"</h3>
+            <p class="text-xs text-slate-500">กิจกรรมถนนคนเดินพาเพลิน เศรษฐศาสตร์ (21 ม.ค. 2568)</p>
+            <div class="text-xs text-slate-600 space-y-2 leading-relaxed border-t border-slate-100 pt-3">
+                <p><strong>รายละเอียด:</strong> นำข้าวกล้องในท้องถิ่นมาแปรรูปเป็นเมนูอาหารสุขภาพช่วงเทศกาลกินเจ เพิ่มมูลค่าวัตถุดิบและส่งเสริมสุขภาพผู้บริโภค</p>
+                <p><strong>สิ่งที่ได้รับ:</strong> ทักษะการคำนวณต้นทุน-กำไร วางแผนธุรกิจ สื่อสารกับผู้บริโภค และใส่ใจสุขภาพประชาชนตั้งแต่ต้นน้ำ</p>
+            </div>
+        </div>
+
+        <div id="m-3" class="modal-box hidden bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-md inline-block">โครงงาน IS สาธารณสุข</span>
+            <h3 class="text-base font-bold text-slate-900">โครงงานถุงหอมไล่ยุงสมุนไพร</h3>
+            <p class="text-xs text-slate-500">รายวิชา IS การศึกษาค้นคว้าด้วยตนเอง (ปีการศึกษา 2567)</p>
+            <div class="text-xs text-slate-600 space-y-2 leading-relaxed border-t border-slate-100 pt-3">
+                <p><strong>รายละเอียด:</strong> แก้ปัญหายุงพาหะนำโรคไข้เลือดออก โดยประยุกต์ใช้ตะไคร้หอมและเปลือกมะนาว ลดการใช้สารเคมีในชุมชน</p>
+                <p><strong>สิ่งที่ได้รับ:</strong> ทักษะการวิจัยค้นคว้าทางวิทยาศาสตร์ และการประยุกต์ภูมิปัญญาเพื่อการป้องกันโรคในชุมชน</p>
+            </div>
+        </div>
+
+        <div id="m-4" class="modal-box hidden bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 text-xs font-bold rounded-md inline-block">เข้าร่วมโครงการ</span>
+            <h3 class="text-base font-bold text-slate-900">ค่ายบูรณาการวิทยาศาสตร์และเทคโนโลยี</h3>
+            <p class="text-xs text-slate-500">15-18 กุมภาพันธ์ 2568</p>
+            <div class="text-xs text-slate-600 space-y-2 leading-relaxed border-t border-slate-100 pt-3">
+                <p><strong>รายละเอียด:</strong> ทดลองไทเทรตทางเคมี สังเกตการณ์หมู่ดาว และการทำงานของหุ่นยนต์</p>
+                <p><strong>สิ่งที่ได้รับ:</strong> ฝึกระเบียบวินัย การปรับตัวเข้ากับเพื่อนร่วมค่าย และการตรงต่อเวลา</p>
+            </div>
+        </div>
+
+        <div id="m-5" class="modal-box hidden bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <span class="px-2.5 py-1 bg-indigo-100 text-indigo-800 text-xs font-bold rounded-md inline-block">วิทยากรประจำซุ้ม</span>
+            <h3 class="text-base font-bold text-slate-900">วิทยากรประจำซุ้มเคมี (อินดิเคเตอร์)</h3>
+            <p class="text-xs text-slate-500">20 สิงหาคม 2568</p>
+            <div class="text-xs text-slate-600 space-y-2 leading-relaxed border-t border-slate-100 pt-3">
+                <p><strong>รายละเอียด:</strong> สาธิตและอธิบายการทดสอบกรด-เบส ด้วยอินดิเคเตอร์ให้แก่ผู้เข้าชมซุ้ม</p>
+                <p><strong>สิ่งที่ได้รับ:</strong> พัฒนาภาวะผู้นำ การถ่ายทอดสื่อสารเรื่องยากให้เข้าใจง่าย และแก้ปัญหาเฉพาะหน้า</p>
+            </div>
+        </div>
+
+        <div id="m-6" class="modal-box hidden bg-white rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <span class="px-2.5 py-1 bg-pink-100 text-pink-800 text-xs font-bold rounded-md inline-block">จิตอาสาสัญจร</span>
+            <h3 class="text-base font-bold text-slate-900">จิตอาสาปรับปรุงสื่อเรียนรู้ โรงเรียนบ้านหนองเหล็ก</h3>
+            <p class="text-xs text-slate-500">22 กุมภาพันธ์ 2568</p>
+            <div class="text-xs text-slate-600 space-y-2 leading-relaxed border-t border-slate-100 pt-3">
+                <p><strong>รายละเอียด:</strong> ร่วมทาสีถนนสื่อเรียนรู้ BBL พัฒนาสภาพแวดล้อมแก่เด็กนักเรียนในชุมชน</p>
+                <p><strong>สิ่งที่ได้รับ:</strong> การเสียสละเพื่อส่วนรวม การนำทักษะศิลปะมาสร้างประโยชน์แก่สังคม</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close Mobile Menu when clicking a menu link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Filter Gallery Items
+        function filterItems(category) {
+            const items = document.querySelectorAll('.activity-item');
+            const tabs = document.querySelectorAll('.activity-tab');
+
+            tabs.forEach(t => {
+                t.classList.remove('bg-slate-900', 'text-white');
+                t.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            event.target.classList.remove('bg-slate-100', 'text-slate-600');
+            event.target.classList.add('bg-slate-900', 'text-white');
+
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.classList.remove('hidden');
+                } else {
+                    const cats = item.getAttribute('data-cat');
+                    if (cats && cats.includes(category)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                }
+            });
+        }
+
+        // Modal Controls
+        const backdrop = document.getElementById('modal-backdrop');
+
+        function openModal(id) {
+            backdrop.classList.remove('hidden');
+            document.querySelectorAll('.modal-box').forEach(m => m.classList.add('hidden'));
+            const target = document.getElementById(id);
+            if (target) {
+                target.classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            backdrop.classList.add('hidden');
+            document.querySelectorAll('.modal-box').forEach(m => m.classList.add('hidden'));
+        }
+
+        backdrop.addEventListener('click', (e) => {
+            if (e.target === backdrop) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
